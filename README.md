@@ -1,120 +1,105 @@
-\# Library Management Database
+# Library Database Administration Project
 
+This project demonstrates practical database administration and design concepts using a library management system.
 
+The focus extends beyond schema design to include operational DBA tasks such as backup and recovery, user access control, and performance optimization.
 
-This project contains the database design for a simple library management system.  
+---
 
-The focus is on schema design, relationships, indexing, and basic database logic.
+## Project Scope
 
+The system supports:
 
+- Book and author management
+- Multiple physical copies per book
+- Member registration
+- Borrowing and return tracking
+- Availability and overdue monitoring
 
-The database supports managing books, authors, members, physical book copies, and borrowing records.
+---
 
+## Database Technologies
 
+- PostgreSQL
+- MySQL
+- SQL
 
-\## Database Overview
+---
 
+## Core Database Features
 
+### Schema Design
+- Normalized relational schema
+- Many-to-many relationships (books ↔ authors)
+- Proper use of primary and foreign keys
 
-The system is designed to handle:
+### Performance Optimization
+- Indexing on frequently queried columns
+- Query performance analysis using EXPLAIN
 
-\- Books and their authors
+### Backup & Recovery
+- Logical database backups using:
+  - PostgreSQL (`pg_dump`, `psql`)
+  - MySQL (`mysqldump`, `mysql`)
+- Restore procedures for data recovery
 
-\- Multiple physical copies per book
+### User Management
+- Role-based access control in PostgreSQL
+- User and privilege management in MySQL
+- Controlled access to database objects
 
-\- Library members
+---
 
-\- Book borrowing and returns
+## Database Structure
 
-\- Tracking availability and overdue items
+Main tables:
 
+- authors
+- books
+- book_authors
+- members
+- book_copies
+- borrow_records
 
+---
 
-The database is implemented using PostgreSQL.
+## Project Files
 
+- `01_schema.sql`  
+  Core table definitions
 
+- `02_constraints.sql`  
+  Foreign key relationships and constraints
 
-\## Schema Structure
+- `03_indexes.sql`  
+  Indexes for performance optimization
 
+- `04_stored_procedures.sql`  
+  Business logic for borrowing and returning books
 
+- `05_sample_queries.sql`  
+  Example queries for data retrieval
 
-Main tables included:
+- `06_backup_restore.sql`  
+  Backup and recovery commands (PostgreSQL & MySQL)
 
+- `07_user_management.sql`  
+  User creation and permission management
 
+---
 
-\- `authors` – stores author information
+## Key Learning Outcomes
 
-\- `books` – stores book details
+- Designing and managing relational databases
+- Implementing indexing strategies for performance
+- Performing database backup and recovery
+- Managing users and access control
+- Understanding differences between PostgreSQL and MySQL administration
 
-\- `book\_authors` – maps books to authors (many-to-many)
+---
 
-\- `members` – library members
+## Notes
 
-\- `book\_copies` – physical copies of books
+This project is database-focused and does not include an application layer.
 
-\- `borrow\_records` – borrowing and return history
-
-
-
-\## Project Files
-
-
-
-\- `01\_schema.sql`  
-
-&nbsp; Core table definitions.
-
-
-
-\- `02\_constraints.sql`  
-
-&nbsp; Foreign keys and basic constraints.
-
-
-
-\- `03\_indexes.sql`  
-
-&nbsp; Indexes added based on common access patterns.
-
-
-
-\- `04\_stored\_procedures.sql`  
-
-&nbsp; Functions for borrowing and returning books.
-
-
-
-\- `05\_sample\_queries.sql`  
-
-&nbsp; Sample read-only queries demonstrating expected usage of the database.
-
-
-
-\## Stored Procedures
-
-
-
-The project includes basic database functions:
-
-\- Borrowing a book copy
-
-\- Returning a borrowed book
-
-
-
-Business logic is kept explicit rather than using triggers.
-
-
-
-\## Notes
-
-
-
-This project is intentionally database-focused.  
-
-No frontend or application layer is included, as the goal is to demonstrate database design and querying logic.
-
-
-
-
-
+The goal is to demonstrate real-world database administration and engineering practices.
