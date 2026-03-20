@@ -1,4 +1,4 @@
-# Library Database Administration Project
+# Library Management System — Database Design & Data Validation
 
 This project demonstrates practical database administration and design concepts using a library management system.
 

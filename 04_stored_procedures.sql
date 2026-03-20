@@ -1,9 +1,11 @@
-CREATE OR REPLACE FUNCTION borrow_book(
-    p_member_id BIGINT,
-    p_book_copy_id BIGINT,
-    p_due_date DATE
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS borrow_book$$
+CREATE PROCEDURE borrow_book(
+    IN p_member_id BIGINT,
+    IN p_book_copy_id BIGINT,
+    IN p_due_date DATE
 )
-RETURNS VOID AS $$
 BEGIN
     INSERT INTO borrow_records (
         member_id,
@@ -17,16 +19,15 @@ BEGIN
     );
 
     UPDATE book_copies
-    SET is_available = FALSE
+    SET is_available = 0
     WHERE id = p_book_copy_id;
-END;
-$$ LANGUAGE plpgsql;
+END$$
 
 
-CREATE OR REPLACE FUNCTION return_book(
-    p_book_copy_id BIGINT
+DROP PROCEDURE IF EXISTS return_book$$
+CREATE PROCEDURE return_book(
+    IN p_book_copy_id BIGINT
 )
-RETURNS VOID AS $$
 BEGIN
     UPDATE borrow_records
     SET returned_date = CURRENT_DATE
@@ -34,7 +35,8 @@ BEGIN
       AND returned_date IS NULL;
 
     UPDATE book_copies
-    SET is_available = TRUE
+    SET is_available = 1
     WHERE id = p_book_copy_id;
-END;
-$$ LANGUAGE plpgsql;
+END$$
+
+DELIMITER ;
